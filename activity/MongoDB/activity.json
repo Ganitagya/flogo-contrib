@@ -1,11 +1,11 @@
 {
   "name": "flogo-mongodb",
   "type": "flogo:activity",
-  "ref": "github.com/Ganitagya/flogo-contrib/activity/mongodb",
+  "ref": "github.com/Ganitagya/flogo-contrib/activity/MongoDB",
   "version": "0.0.1",
   "title": "AkashMongoDB",
   "description": "Manage MongoDB documents in a specified collection",
-  "homepage": "https://github.com/Ganitagya/flogo-contrib/edit/master/activity/mongodb",
+  "homepage": "https://github.com/Ganitagya/flogo-contrib/edit/master/activity/MongoDB",
   "input": [
     {
       "name": "uri",
