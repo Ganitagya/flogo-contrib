@@ -41,11 +41,12 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	// do eval
 
 	//filenameInput, _ := context.GetInput(filename).(string)
-	ivlineNumber, ok := context.GetInput(lineNumber).(int)
-	if !ok {
-		context.SetOutput("result", "LINE NUMBER NOT SET")
-		return true, fmt.Errorf("line number not set")
-	}
+
+	// ivlineNumber, ok := context.GetInput(lineNumber).(int)
+	// if !ok {
+	// 	context.SetOutput("result", "LINE NUMBER NOT SET")
+	// 	return true, fmt.Errorf("line number not set")
+	// }
 
 	//ivfilename, ok := filenameInput.(string)
 	ivfilename, ok := context.GetInput(filename).(string)
@@ -55,14 +56,11 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	}
 
 	b, err := ioutil.ReadFile(ivfilename) // just pass the file name
-    if err != nil {
-        fmt.Print(err)
-    }
+	if err != nil {
+		fmt.Print(err)
+	}
 
-
-		str := string(b) // convert content to a 'string'
-		ivlineNumber++
-
+	str := string(b) // convert content to a 'string'
 
 	// fileHandle, _ := os.Open(ivfilename)
 	// defer fileHandle.Close()
