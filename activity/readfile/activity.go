@@ -1,8 +1,10 @@
 package readfile
 
 import (
+
+	"bufio"
 	"fmt"
-	"io/ioutil"
+	"os"
 
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
@@ -13,7 +15,7 @@ var activityLog = logger.GetLogger("activity-flogo-filereader")
 
 const (
 	ivMessage   = "filename"
-	
+	ivlineNumber = "linenumber"
 
 	ovMessage = "result"
 )
@@ -43,20 +45,50 @@ func (a *LogActivity) Metadata() *activity.Metadata {
 func (a *LogActivity) Eval(context activity.Context) (done bool, err error) {
 
 	//mv := context.GetInput(ivMessage)
-	message, _ := context.GetInput(ivMessage).(string)	
+	message, ok := context.GetInput(ivMessage).(string)
+
+	if !ok {
+    		context.SetOutput("result", "FILENAME_NOT_SET")
+    		return true, fmt.Errorf("Filename not set")
+  	}
+	
 	msg := message
 	activityLog.Info(msg)
 
+	lnumber, ok := context.GetInput(ivlineNumber).(int)
+	if !ok {
+  		context.SetOutput("result", "LINE NUMBER NOT SET")
+  		return true, fmt.Errorf("line number not set")
+   	}
+
+
+	activityLog.Info(lnumber)
+
+/*
         b, err := ioutil.ReadFile(msg) // just pass the file name
 	if err != nil {
 		fmt.Print(err)
 	}
 
 	str := string(b) // convert content to a 'string'
+*/
+	fileHandle, _ := os.Open(msg)
+	defer fileHandle.Close()
 
-	
+	fileScanner := bufio.NewScanner(fileHandle)
+	lastLine := 0
+	line := ""
 
-	context.SetOutput("result", str)
+	for fileScanner.Scan() {
+   		lastLine++
+
+   		if lastLine == lnumber {
+     			line = fileScanner.Text()
+     			break
+   		}
+	}
+
+	context.SetOutput("result", line)
 
 	
 

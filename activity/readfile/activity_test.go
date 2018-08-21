@@ -42,8 +42,8 @@ func TestEval(t *testing.T) {
 	tc := test.NewTestActivityContext(getActivityMetadata())
 
 	//setup attrs
-	tc.SetInput("filename", "test")
-
+	tc.SetInput("filename", "activity.json")
+	tc.SetInput("linenumber", 4)
 
 	act.Eval(tc)
 

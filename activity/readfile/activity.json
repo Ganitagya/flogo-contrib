@@ -11,6 +11,11 @@
       "name": "filename",
       "type": "string",
       "required": true
+    },
+    {
+      "name": "linenumber",
+      "type": "integer",
+      "required": true
     }
   ],
   "output": [
