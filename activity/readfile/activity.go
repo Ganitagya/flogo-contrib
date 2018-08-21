@@ -42,14 +42,20 @@ func (a *LogActivity) Metadata() *activity.Metadata {
 func (a *LogActivity) Eval(context activity.Context) (done bool, err error) {
 
 	//mv := context.GetInput(ivMessage)
-	message, _ := context.GetInput(ivMessage).(string)
-
-	
+	message, _ := context.GetInput(ivMessage).(string)	
 	msg := message
+	activityLog.Info(msg)
+
+        b, err := ioutil.ReadFile(msg) // just pass the file name
+	if err != nil {
+		fmt.Print(err)
+	}
+
+	str := string(b) // convert content to a 'string'
 
 	
 
-	activityLog.Info(msg)
+	context.SetOutput("result", str)
 
 	
 
