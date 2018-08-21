@@ -2,27 +2,33 @@ package readfile
 
 import (
 	"fmt"
-	"github.com/TIBCOSoftware/flogo-contrib/action/flow/test"
-	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"io/ioutil"
 	"testing"
+
+	"github.com/TIBCOSoftware/flogo-contrib/action/flow/test"
+	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 )
 
 var activityMetadata *activity.Metadata
 
 func getActivityMetadata() *activity.Metadata {
+
 	if activityMetadata == nil {
 		jsonMetadataBytes, err := ioutil.ReadFile("activity.json")
 		if err != nil {
 			panic("No Json Metadata found for activity.json path")
 		}
+
 		activityMetadata = activity.NewMetadata(string(jsonMetadataBytes))
 	}
+
 	return activityMetadata
 }
 
 func TestCreate(t *testing.T) {
+
 	act := NewActivity(getActivityMetadata())
+
 	if act == nil {
 		t.Error("Activity Not Created")
 		t.Fail()
@@ -32,30 +38,33 @@ func TestCreate(t *testing.T) {
 
 func TestEval(t *testing.T) {
 
-	defer func() {
-		if r := recover(); r != nil {
-			t.Failed()
-			t.Errorf("panic during execution: %v", r)
-		}
-	}()
+	act := NewActivity(getActivityMetadata())
+	tc := test.NewTestActivityContext(getActivityMetadata())
+
+	//setup attrs
+	tc.SetInput("message", "test message")
+	tc.SetInput("flowInfo", true)
+
+	act.Eval(tc)
+}
+
+func TestAddToFlow(t *testing.T) {
 
 	act := NewActivity(getActivityMetadata())
 	tc := test.NewTestActivityContext(getActivityMetadata())
+
 	//setup attrs
-
-	fmt.Println("Reading the test file ")
-
-	tc.SetInput("filename", "testfile")
-	tc.SetInput("lineNumber", 1)
+	tc.SetInput("message", "test message")
+	tc.SetInput("flowInfo", true)
+	tc.SetInput("addToFlow", true)
 
 	act.Eval(tc)
 
-	//check result attr
-	result := tc.GetOutput("result")
-	fmt.Println("result: ", result)
+	msg := tc.GetOutput("message")
 
-	if result == nil {
+	fmt.Println("Message: ", msg)
+
+	if msg == nil {
 		t.Fail()
 	}
-
 }
