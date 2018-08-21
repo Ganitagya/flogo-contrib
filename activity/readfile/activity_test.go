@@ -1,7 +1,7 @@
 package readfile
 
 import (
-
+	"fmt"
 	"io/ioutil"
 	"testing"
 
