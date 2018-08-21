@@ -1,7 +1,7 @@
 package readfile
 
 import (
-	"fmt"
+
 	"io/ioutil"
 	"testing"
 
@@ -42,29 +42,10 @@ func TestEval(t *testing.T) {
 	tc := test.NewTestActivityContext(getActivityMetadata())
 
 	//setup attrs
-	tc.SetInput("message", "test message")
-	tc.SetInput("flowInfo", true)
+	tc.SetInput("filename", "test")
+
 
 	act.Eval(tc)
 }
 
-func TestAddToFlow(t *testing.T) {
 
-	act := NewActivity(getActivityMetadata())
-	tc := test.NewTestActivityContext(getActivityMetadata())
-
-	//setup attrs
-	tc.SetInput("message", "test message")
-	tc.SetInput("flowInfo", true)
-	tc.SetInput("addToFlow", true)
-
-	act.Eval(tc)
-
-	msg := tc.GetOutput("message")
-
-	fmt.Println("Message: ", msg)
-
-	if msg == nil {
-		t.Fail()
-	}
-}
