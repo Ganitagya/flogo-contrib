@@ -3,6 +3,8 @@
 ## Query data from mysql/ postgres/ sqlite3
 This activity provides your flogo application the ability to fire a select query to SQL database and fetch the required data returning it as a JSON string.
 
+currently SQLite3 not supported
+
 # Third Party Drivers Used
 https://github.com/golang/go/wiki/SQLDrivers
 
