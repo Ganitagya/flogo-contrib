@@ -9,7 +9,7 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"   //required if mysql driver is selected
 	_ "github.com/lib/pq"                //required if postgres driver is selected
-	_ "github.com/mxk/go-sqlite/sqlite3" //required if sqlite3 driver is selected
+	//_ "github.com/mxk/go-sqlite/sqlite3" //required if sqlite3 driver is selected
 
 	"bytes"
 	"encoding/json"
