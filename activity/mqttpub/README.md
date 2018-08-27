@@ -117,7 +117,7 @@ Configure a task in flow to publish a "hello world" message on MQTT topic called
     {
       "name": "qos",
       "type": "integer",
-      "allowed" : ["0", "1", "2"]
+      "allowed" : ["0", "1", "2"],
       "eg"  : 0
     },
     {
@@ -127,7 +127,7 @@ Configure a task in flow to publish a "hello world" message on MQTT topic called
     },
     {
       "name": "message",
-      "type": "string"
+      "type": "string",
       "eg"  : "Hello from Flogo"
     }
   ],
