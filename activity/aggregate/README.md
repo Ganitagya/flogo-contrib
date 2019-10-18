@@ -5,7 +5,7 @@ This activity provides your flogo application with rudimentary aggregation.
 ## Installation
 
 ```bash
-flogo add activity github.com/TIBCOSoftware/flogo-contrib/activity/aggregate
+flogo add activity github.com/Ganitagya/flogo-contrib/activity/aggregate
 ```
 
 ## Schema
