@@ -1,17 +1,17 @@
-package aggregate
+package aggregate_old
 
 import (
 	"errors"
 	"sync"
 
-	"github.com/TIBCOSoftware/flogo-contrib/activity/aggregate/aggregator"
+	"github.com/TIBCOSoftware/flogo-contrib/activity/aggregate_old/aggregator"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/core/data"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
 
 // activityLogger is the default logger for the Aggregate Activity
-var activityLogger = logger.GetLogger("activity-tibco-aggregate")
+var activityLogger = logger.GetLogger("activity-aggregate_old")
 
 const (
 	ivFunction   = "function"
