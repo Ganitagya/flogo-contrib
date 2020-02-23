@@ -1,0 +1,33 @@
+{
+    "name": "getactivespacestable",
+    "type": "flogo:activity",
+    "ref": "github.com/Ganitagya/flogo-components/activity/getactivespacestable",
+    "version": "0.0",
+    "title": "GetActiveSpaces Table",
+    "description": "Get ActiveSpaces Table",
+    "author": "Akash Mahapara",
+    "homepage": "https://github.com/Ganitagya/flogo-components/tree/master/activity/getactivespacestable",
+    "inputs": [
+        {
+            "name": "connectionURL",
+            "type": "string",
+            "required": true
+        },
+        {
+            "name": "tableName",
+            "type": "string",
+            "required": true
+        },
+        {
+            "name": "key",
+            "type": "int",
+            "required": true
+        }
+    ],
+    "outputs": [
+        {
+            "name": "result",
+            "type": "string"
+        }
+    ]
+}
